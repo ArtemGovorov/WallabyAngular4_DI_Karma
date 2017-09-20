@@ -30,6 +30,9 @@ module.exports = function ( wallaby ) {
             { pattern: 'src/**/*.spec.ts', load: false },
             { pattern: 'src/base.spec.ts', load: false, ignore: true }
         ],
+        compilers: {
+            '**/*.ts': wallaby.compilers.typeScript(require('./src/tsconfig.json').compilerOptions)
+        },
         middleware: function ( app, express ) {
             app.use( '/node_modules',
                 express.static(
